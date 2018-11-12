@@ -10,10 +10,7 @@
 class Game {
 
   //the div to place the game objects in, width and height of div (def: 250)
-  constructor(div, width = 250, height = 250, bgColor = "black", debugging = false) {
-
-    //debugging
-    this.debug = debugging ;
+  constructor(div, width = 250, height = 250, bgColor = "black") {
 
     //have div available for other classes
     this.board = div ;
@@ -57,8 +54,6 @@ class Game {
   addShape(shape) {
     if (shape != null) {
       this.shapes.push(shape) ;
-      if (this.debug)
-        console.log("Shape added") ;
     }
   }
 

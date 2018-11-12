@@ -18,8 +18,8 @@ function start() {
   gamediv = $("#gameboard") ;
   //declare game object for game engine we built
   game = new Game(gamediv, 1500, 600, "black", true) ;
-  var colors = ["white", "lightgray", "gray"] ;
-  for (var i = 0 ; i < 1000 ; i++) {
-    game.addShape(new Shape(game, 3, 3, 3*i+750, 3*i+300, colors[i%colors.length], 1*(i/100), i*Math.PI/4)) ;
+  var colors = ["white"] ;
+  for (var i = 0 ; i < 10000 ; i++) {
+    game.addShape(new Shape(game, 3, 3, (i/8)+750, (i/8)+300, colors[i%colors.length], (i/600), (i/16)*Math.PI/4)) ;
   }
 }
