@@ -20,6 +20,7 @@ $(function() {
   start() ;
   $("#demo").click(function() {
     game.killClock() ;
+    rot = 0 ;
     start() ;
   }) ;
 
