@@ -36,7 +36,7 @@ class Game {
     var onUpdate = function(shapes, width, height) {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
-          if (shapes[i].posX > width || shapes[i].posY > height) {
+          if ((shapes[i].posX > width || shapes[i].posY > height) || (shapes[i].posX < 0 || shapes[i].posY < 0)) {
             //delete from dom
             shapes[i].deleteShape() ;
             //delete from array
@@ -53,7 +53,10 @@ class Game {
   //add a shape to the shape array
   addShape(shape) {
     if (shape != null) {
+      //append the shape to the array
       this.shapes.push(shape) ;
+      //append the shape to the gameboard (DOM)
+      this.board.append(shape.element) ;
     }
   }
 

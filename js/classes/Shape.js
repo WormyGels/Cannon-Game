@@ -12,7 +12,7 @@ class Shape {
   * Takes:
   * Game engine object, width height, initial position, and boolean if its circle
   */
-  constructor(game, width, height, initPosX, initPosY, color, momentum, theta, isCircle = false) {
+  constructor(width, height, initPosX, initPosY, color, momentum, theta, isCircle = false) {
     this.width = width ;
     this.height = height ;
     this.color = color ;
@@ -21,9 +21,6 @@ class Shape {
     this.speed = momentum ;
     this.theta = theta ;
     this.element = $("<div style='position: absolute ; top: "+this.posY+"px ; left: "+this.posY+"px ; width: "+this.width+"px ; height: "+this.height+"px ; background-color: "+this.color+";' class='shape'></div>") ;
-
-    //append the shape to the gameboard
-    game.board.append(this.element) ;
 
   }
 
