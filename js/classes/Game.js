@@ -39,6 +39,7 @@ class Game {
     var onUpdate = function(shapes, width, height, collision) {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
+          shapes[i].updateRotation() ;
           if ((shapes[i].posX > width || shapes[i].posY > height) || (shapes[i].posX < 0 || shapes[i].posY < 0)) {
             //delete from dom
             shapes[i].deleteShape() ;
