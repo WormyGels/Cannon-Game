@@ -62,7 +62,7 @@ class Shape {
   }
   //update the rotation of the shape
   updateRotation() {
-    this.element.css("transform", "rotate("+this.rotation+"deg)") ;
+    this.element.css("transform", "rotate("+this.rotation+"rad)") ;
   }
   //update the direction
   setVector(speed, theta) {
