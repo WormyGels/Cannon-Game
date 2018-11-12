@@ -10,7 +10,7 @@
 class Game {
 
   //the div to place the game objects in, width and height of div (def: 250)
-  constructor(div, width = 250, height = 250, bgColor = "black") {
+  constructor(div, width = 250, height = 250, bgColor = "black", tickrate = 10) {
 
     //have div available for other classes
     this.board = div ;
@@ -22,7 +22,10 @@ class Game {
     //array of shapes
     this.shapes = [] ;
     //the number of miliseconds between updates in game logic (physics and collission)
-    this.tickrate = 10 ;
+    this.tickrate = tickrate ;
+
+    //array of collission listeners
+    this.collision = [] ;
 
     //clear it for new game possibility
     div.empty() ;
@@ -33,7 +36,7 @@ class Game {
     div.css("background-color", bgColor) ;
     div.css("position", "relative") ;
 
-    var onUpdate = function(shapes, width, height) {
+    var onUpdate = function(shapes, width, height, collision) {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
           if ((shapes[i].posX > width || shapes[i].posY > height) || (shapes[i].posX < 0 || shapes[i].posY < 0)) {
@@ -43,10 +46,13 @@ class Game {
             shapes.splice(i, 1) ;
           }
       }
+      for (var i = 0 ; i < collision.length ; i++) {
+        collision[i]() ;
+      }
     }
 
     //loop through and update the positions and collision logic of every shape every tick
-    this.clock = setInterval(onUpdate, this.tickrate, this.shapes, this.width, this.height) ;
+    this.clock = setInterval(onUpdate, this.tickrate, this.shapes, this.width, this.height, this.collision) ;
 
   }
 
@@ -63,6 +69,21 @@ class Game {
   //free memory function
   killClock() {
     clearInterval(this.clock) ;
+  }
+
+  //takes two shapes, and when they collide the function executes
+  //NOTE collision listeners need to be designed to deal with the fact they will likely be executed more than once
+  addCollisionListener(fun, shape1, shape2) {
+    this.collision.push(function() {
+      //if there is an intersection
+      if (
+        (shape1.posX >= shape2.posX) && (shape1.posX <= shape2.posX+shape2.width) &&
+        (shape1.posY >= shape2.posY) && (shape1.posY <= shape2.posY+shape2.height)
+      )
+      //execute function passed
+        fun() ;
+    }) ;
+
   }
 
 }

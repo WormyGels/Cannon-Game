@@ -18,10 +18,17 @@ function start() {
   //get the game div
   gamediv = $("#gameboard") ;
   //declare game object for game engine we built
-  game = new Game(gamediv, 1500, 600, "black", true) ;
+  //10 ticks is 100 fps (100 ticks per second close to 100fps)
+  game = new Game(gamediv, 1500, 600, "black") ;
 
-  game.addShape(new Shape(20, 20, 0, 300, "red", 5, 0)) ;
-  game.addShape(new Shape(20, 20, 1480, 300, "blue", 4, pi)) ;
-  game.addShape(new Shape(20, 20, 750, 580, "green", 3, 3*pi/2)) ;
+  var shape1 = new Shape(20, 20, 0, 0, "red", 3, pi/4) ;
+  var shape2 = new Shape(20, 20, 580, 580, "blue", 3, 5*pi/4) ;
+
+
+  game.addShape(shape1) ;
+  game.addShape(shape2) ;
+  game.addCollisionListener(function() {
+    console.log("1 and 2 collide") ;
+  }, shape1, shape2) ;
 
 }
