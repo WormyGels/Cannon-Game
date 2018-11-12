@@ -1,14 +1,25 @@
 var gamediv ;
+var game ;
 
 $(function() {
-  //get the game div
-  gamediv = $("#gameboard") ;
-  //declare game object for game engine we built
-  var game = new Game(gamediv, 1500, 600, "black", true) ;
-  game.addShape(new Shape(game, 20, 20, 1500, 50, "red", 1, 3*Math.PI/4)) ;
-  game.addShape(new Shape(game, 20, 20, 1500, 70, "blue", 1.1, 3*Math.PI/4)) ;
-  game.addShape(new Shape(game, 20, 20, 1500, 90, "green", 1.2, 3*Math.PI/4)) ;
+
+  start() ;
+  $("#demo").click(function() {
+    game.killClock() ;
+    start() ;
+  }) ;
 
 
 
 }) ;
+
+function start() {
+  //get the game div
+  gamediv = $("#gameboard") ;
+  //declare game object for game engine we built
+  game = new Game(gamediv, 1500, 600, "black", true) ;
+  var colors = ["white", "lightgray", "gray"] ;
+  for (var i = 0 ; i < 1000 ; i++) {
+    game.addShape(new Shape(game, 3, 3, 3*i+750, 3*i+300, colors[i%colors.length], 1*(i/100), i*Math.PI/4)) ;
+  }
+}

@@ -33,9 +33,6 @@ class Shape {
     var yChange = this.speed * Math.sin(this.theta) ;
     var xChange = this.speed * Math.cos(this.theta) ;
 
-    console.log("x: " + xChange) ;
-    console.log("y: " + yChange) ;
-
     this.posX = this.posX + xChange ;
     this.posY = this.posY + yChange ;
 
