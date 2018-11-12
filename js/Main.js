@@ -8,7 +8,9 @@ var rot = 0 ;
 var rotSpeed = pi/16 ;
 
 //speed of the shot
-var shotSpeed = 10 ;
+var shotSpeed = 5 ;
+var reloadSpeed = 1000 ;
+var reloading = false ;
 
 //width and height of the gameboard
 var width = 1500 ;
@@ -49,8 +51,10 @@ function start() {
 
   //when we hit the up arrow
   $(document).keydown(function(k) {
-    if (k.which == 38) {
-      game.addShape(new Shape(20, 20, width/2, height-60, "red", shotSpeed, rot - pi/2)) ;
+    if (k.which == 38 && !reloading) {
+      game.addShape(new Shape(20, 20, width/2, height-60, "gray", shotSpeed, rot - pi/2)) ;
+      reloading = true ;
+      setTimeout(function() {reloading = false ;}, reloadSpeed) ;
     }
   }) ;
 
