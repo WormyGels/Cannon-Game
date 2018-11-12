@@ -21,7 +21,7 @@ class Game {
     //array of shapes
     this.shapes = [] ;
     //the number of miliseconds between updates in game logic (physics and collission)
-    this.tickrate = 1000 ;
+    this.tickrate = 10 ;
 
     //set the gameboard
     div.css("width", width+"px") ;
@@ -33,11 +33,10 @@ class Game {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
       }
-      console.log("tick") ;
     }
 
     //loop through and update the positions and collision logic of every shape every tick
-    setInterval(onUpdate, this.shapes, this.tickrate) ;
+    setInterval(onUpdate, this.tickrate, this.shapes) ;
 
   }
 
