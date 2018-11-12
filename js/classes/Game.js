@@ -18,6 +18,10 @@ class Game {
     //have div available for other classes
     this.board = div ;
 
+    //width and height
+    this.width = width ;
+    this.height = height ;
+
     //array of shapes
     this.shapes = [] ;
     //the number of miliseconds between updates in game logic (physics and collission)
@@ -32,15 +36,20 @@ class Game {
     div.css("background-color", bgColor) ;
     div.css("position", "relative") ;
 
-    var onUpdate = function(shapes) {
+    var onUpdate = function(shapes, width, height) {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
+          if (shapes[i].posX > width || shapes[i].posY > height) {
+            //delete from dom
+            shapes[i].deleteShape() ;
+            //delete from array
+            shapes.splice(i, 1) ;
+          }
       }
-      //console.log("tick") ;
     }
 
     //loop through and update the positions and collision logic of every shape every tick
-    this.clock = setInterval(onUpdate, this.tickrate, this.shapes) ;
+    this.clock = setInterval(onUpdate, this.tickrate, this.shapes, this.width, this.height) ;
 
   }
 

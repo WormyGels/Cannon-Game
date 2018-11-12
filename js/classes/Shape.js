@@ -40,5 +40,8 @@ class Shape {
     this.element.css("top", this.posY) ;
   }
 
+  deleteShape() {
+    this.element.remove() ;
+  }
 
 }
