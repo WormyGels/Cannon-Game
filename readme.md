@@ -2,7 +2,6 @@
 Created by Jeremy Wells for CS 396 at Western Kentucky University.
 
 ## TODO
-* Add moving platform
 * Scoring system
 * Limited balls
 * Menu

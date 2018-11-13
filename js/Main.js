@@ -9,7 +9,7 @@ var rotSpeed = pi/16 ;
 
 //speed of the shot
 var shotSpeed = 5 ;
-var reloadSpeed = 1000 ;
+var reloadSpeed = 200 ;
 var reloading = false ;
 
 //speed of target
@@ -72,7 +72,7 @@ function start() {
   //when we hit the up arrow
   game.addKeyListener(function() {
     if (!reloading) {
-      var ball = new Shape(20, 20, width/2, height-60, "gray", shotSpeed, rot - pi/2) ;
+      var ball = new Shape(10, 10, width/2, height-60, "gray", shotSpeed, rot - pi/2) ;
       game.addShape(ball) ;
       reloading = true ;
       setTimeout(function() {reloading = false ;}, reloadSpeed) ;
