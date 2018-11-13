@@ -77,7 +77,7 @@ function start() {
   game.addShape(cannon) ;
 
   //moving target
-  target = new Shape(100, 10, 100, 60, "white", targetSpeed, 0) ;
+  target = new Shape(100, 10, 100, 60, "red", targetSpeed, 0) ;
   game.addShape(target) ;
   //when target gets to certain point, flip its direction
   game.addFunction(function() {
@@ -94,7 +94,7 @@ function start() {
   //when we hit the up arrow
   game.addKeyListener(function() {
     if (!reloading && balls > 0) {
-      var ball = new Shape(10, 10, width/2, height-60, "gray", shotSpeed, rot - pi/2) ;
+      var ball = new Shape(10, 10, width/2, height-60, "cyan", shotSpeed, rot - pi/2) ;
       game.addShape(ball) ;
       reloading = true ;
       balls-- ;
@@ -109,6 +109,7 @@ function start() {
         bufferPeriod = true ;
         setTimeout(function() {bufferPeriod = false ;}, bufferTime) ;
         updateScore() ;
+        ball.hideShape() ;
       }, ball, target) ;
     }
   }, 32) ; //32 is spacebar
