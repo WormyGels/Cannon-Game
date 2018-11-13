@@ -12,6 +12,10 @@ var shotSpeed = 5 ;
 var reloadSpeed = 1000 ;
 var reloading = false ;
 
+//speed of target
+var targetSpeed = 5 ;
+var targetDir = 0 ;
+
 //width and height of the gameboard
 var width = 1500 ;
 var height = 600 ;
@@ -50,13 +54,33 @@ function start() {
   game.addShape(cannonStand) ;
   game.addShape(cannon) ;
 
+  //moving target
+  var target = new Shape(100, 10, 100, 60, "white", targetSpeed, 0) ;
+  game.addShape(target) ;
+  //when target gets to certain point, flip its direction
+  game.addFunction(function() {
+    if (target.posX > width-100 || target.posX <= 0) {
+      //change direction of target
+      if (targetDir == 0)
+        targetDir = pi ;
+      else
+        targetDir = 0 ;
+      target.setVector(targetSpeed, targetDir) ;
+    }
+  }) ;
+
   //when we hit the up arrow
   game.addKeyListener(function() {
     if (!reloading) {
-      game.addShape(new Shape(20, 20, width/2, height-60, "gray", shotSpeed, rot - pi/2)) ;
+      var ball = new Shape(20, 20, width/2, height-60, "gray", shotSpeed, rot - pi/2) ;
+      game.addShape(ball) ;
       reloading = true ;
       setTimeout(function() {reloading = false ;}, reloadSpeed) ;
+      //while ball is on screen, add listener
+      game.addCollisionListener(function() {
+        window.alert("HIT") ;
+      }, ball, target) ;
     }
-  }, 32) ;
+  }, 32) ; //32 is spacebar
 
 }

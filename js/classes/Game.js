@@ -27,6 +27,9 @@ class Game {
     //array of collission listeners
     this.collision = [] ;
 
+    //array of misc functions
+    this.functions = [] ;
+
     //clear it for new game possibility
     div.empty() ;
 
@@ -36,7 +39,7 @@ class Game {
     div.css("background-color", bgColor) ;
     div.css("position", "relative") ;
 
-    var onUpdate = function(shapes, width, height, collision) {
+    var onUpdate = function(shapes, width, height, collision, functions) {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
           shapes[i].updateRotation() ;
@@ -50,10 +53,13 @@ class Game {
       for (var i = 0 ; i < collision.length ; i++) {
         collision[i]() ;
       }
+      for (var i = 0 ; i < functions.length ; i++) {
+        functions[i]() ;
+      }
     }
 
     //loop through and update the positions and collision logic of every shape every tick
-    this.clock = setInterval(onUpdate, this.tickrate, this.shapes, this.width, this.height, this.collision) ;
+    this.clock = setInterval(onUpdate, this.tickrate, this.shapes, this.width, this.height, this.collision, this.functions) ;
 
   }
 
@@ -80,9 +86,10 @@ class Game {
       if (
         (shape1.posX >= shape2.posX) && (shape1.posX <= shape2.posX+shape2.width) &&
         (shape1.posY >= shape2.posY) && (shape1.posY <= shape2.posY+shape2.height)
-      )
-      //execute function passed
-        fun() ;
+      ) {
+          fun() ;
+      }
+
     }) ;
 
   }
@@ -99,6 +106,10 @@ class Game {
       down[pressed.which] = false ;
       //console.log("up"+down) ;
     }) ;
+  }
+  //misc functions for changing things during running
+  addFunction(fun) {
+    this.functions.push(fun) ;
   }
 
 }

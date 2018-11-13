@@ -2,7 +2,6 @@
 Created by Jeremy Wells for CS 396 at Western Kentucky University.
 
 ## TODO
-* Key listeners should be moved to Game class for better tracking of keys
 * Add moving platform
 * Scoring system
 * Limited balls
