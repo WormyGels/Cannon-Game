@@ -4,6 +4,7 @@
   <head>
     <title>Cannon Game</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/classes/Game.js"></script>
@@ -12,7 +13,16 @@
 
   </head>
   <body>
-    <div id="gameboard"></div>
-    <button id="demo">Reset</button>
+    <div id="board">
+      <div id="gameboard"></div>
+      <div id="scoreboard">
+        <span class="score-label">Level <span id="level_num"></span></span>
+        <span class="score-label">Score: <span id="score_num"></span></span>
+        <span class="score-label">Shots: <span id="shot_num"></span></span>
+        <span class="score-label">Needed: <span id="need_num"></span></span>
+      </div>
+    </div>
+    <audio id="shoot" src="res/shoot.mp3" preload="auto" controls="none" style="display: none;"></audio>
+    <audio id="hit" src="res/hit.mp3" preload="auto" controls="none" style="display: none;"></audio>
   </body>
 </html>

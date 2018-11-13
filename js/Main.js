@@ -9,16 +9,30 @@ var rotSpeed = pi/16 ;
 
 //speed of the shot
 var shotSpeed = 5 ;
-var reloadSpeed = 200 ;
+var reloadSpeed = 1000 ;
 var reloading = false ;
 
 //speed of target
-var targetSpeed = 5 ;
+var targetSpeed = 1 ;
 var targetDir = 0 ;
+var target ;
 
 //width and height of the gameboard
 var width = 1500 ;
 var height = 600 ;
+
+//current level
+var level = 1 ;
+//current score
+var score = 0 ;
+var posScore = 1 ;
+var requiredScore = 1 ;
+var maxBalls = 10 ;
+var balls = maxBalls ;
+
+//buffer period for collisions
+var bufferPeriod = false ;
+var bufferTime = 1000 ;
 
 //on jquery start
 $(function() {
@@ -34,6 +48,14 @@ $(function() {
 
 //start a new game
 function start() {
+
+  //reset level, score
+  score = 0 ;
+  posScore = 1 ;
+  level = 1 ;
+  balls = maxBalls ;
+  updateScore() ;
+
   //get the game div
   gamediv = $("#gameboard") ;
   //declare game object for game engine we built
@@ -55,11 +77,11 @@ function start() {
   game.addShape(cannon) ;
 
   //moving target
-  var target = new Shape(100, 10, 100, 60, "white", targetSpeed, 0) ;
+  target = new Shape(100, 10, 100, 60, "white", targetSpeed, 0) ;
   game.addShape(target) ;
   //when target gets to certain point, flip its direction
   game.addFunction(function() {
-    if (target.posX > width-100 || target.posX <= 0) {
+    if (target.posX > width-95 || target.posX <= 5) {
       //change direction of target
       if (targetDir == 0)
         targetDir = pi ;
@@ -71,16 +93,51 @@ function start() {
 
   //when we hit the up arrow
   game.addKeyListener(function() {
-    if (!reloading) {
+    if (!reloading && balls > 0) {
       var ball = new Shape(10, 10, width/2, height-60, "gray", shotSpeed, rot - pi/2) ;
       game.addShape(ball) ;
       reloading = true ;
+      balls-- ;
+      updateScore() ;
+      $("#shoot").get(0).play() ;
       setTimeout(function() {reloading = false ;}, reloadSpeed) ;
       //while ball is on screen, add listener
       game.addCollisionListener(function() {
-        window.alert("HIT") ;
+        $("#hit").get(0).play() ;
+        if (!bufferPeriod)
+          score = score + posScore ;
+        bufferPeriod = true ;
+        setTimeout(function() {bufferPeriod = false ;}, bufferTime) ;
+        updateScore() ;
       }, ball, target) ;
     }
   }, 32) ; //32 is spacebar
+
+}
+//go to the next level if we can
+function updateScore() {
+
+  if ((score >= requiredScore) && (balls <= 0)) {
+    //go to the next level
+    level++ ;
+    targetSpeed++ ;
+    target.setVector(targetSpeed, targetDir) ;
+    //give them extra balls for extra score
+    balls = maxBalls+(score-requiredScore) ;
+    requiredScore++ ;
+    score = 0 ;
+  }
+  //TODO also needs to check no balls are on screen
+  else if (balls <= 0) {
+    //game over
+    window.alert("Game over!") ;
+  }
+
+  //update the labels
+  $("#level_num").text(level) ;
+  $("#score_num").text(score) ;
+  $("#shot_num").text(balls) ;
+  $("#need_num").text(requiredScore) ;
+
 
 }

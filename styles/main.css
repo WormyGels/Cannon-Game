@@ -1,12 +1,25 @@
 #gameboard {
   overflow: hidden ;
+}
+#board {
   border: 1px solid white ;
+  position: relative ;
 }
 body {
   background-color: black ;
+  color: white ;
+  font-family: 'Press Start 2P', cursive;
 }
 button {
   background-color: black ;
   border: 1px solid white ;
   color: white ;
+}
+#scoreboard {
+  text-align: right ;
+}
+.score-label {
+  font-size: 32px ;
+  display: block ;
+  padding-right: 100px ;
 }
