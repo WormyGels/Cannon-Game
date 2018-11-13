@@ -86,5 +86,19 @@ class Game {
     }) ;
 
   }
+  addKeyListener(fun, key) {
+    //array of keys that are pressed down
+    var down = [] ;
+    $(document).keydown(function(pressed) {
+      down[pressed.which] = true ;
+      if (down[key])
+        fun() ;
+      //console.log("down"+down) ;
+    }) ;
+    $(document).keyup(function(pressed) {
+      down[pressed.which] = false ;
+      //console.log("up"+down) ;
+    }) ;
+  }
 
 }

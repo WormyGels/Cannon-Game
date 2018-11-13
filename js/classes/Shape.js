@@ -39,15 +39,6 @@ class Shape {
     this.element.css("top", this.posY) ;
   }
 
-  //add a key press listener
-  addKeyListener(fun, key) {
-    $(document).keydown(function(k) {
-      if (k.which == key) {
-        fun() ;
-      }
-    }) ;
-  }
-
   //delete a shape from the DOM
   deleteShape() {
     this.element.remove() ;

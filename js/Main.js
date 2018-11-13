@@ -37,11 +37,12 @@ function start() {
   game = new Game(gamediv, width, height, "black") ;
 
   var cannon = new Shape(20, 60, width/2, height-60, "white", 0, 0) ;
-  cannon.addKeyListener(function() {
+  //left and right arrows: 37 and 39 respectively
+  game.addKeyListener(function() {
     rot = (rot - rotSpeed) % pi ;
     cannon.setRotation(rot) ;
   }, 37) ;
-  cannon.addKeyListener(function() {
+  game.addKeyListener(function() {
     rot = (rot + rotSpeed) % pi ;
     cannon.setRotation(rot) ;
   }, 39) ;
@@ -50,12 +51,12 @@ function start() {
   game.addShape(cannon) ;
 
   //when we hit the up arrow
-  $(document).keydown(function(k) {
-    if (k.which == 38 && !reloading) {
+  game.addKeyListener(function() {
+    if (!reloading) {
       game.addShape(new Shape(20, 20, width/2, height-60, "gray", shotSpeed, rot - pi/2)) ;
       reloading = true ;
       setTimeout(function() {reloading = false ;}, reloadSpeed) ;
     }
-  }) ;
+  }, 32) ;
 
 }
