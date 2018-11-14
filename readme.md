@@ -11,6 +11,4 @@ Created by Jeremy Wells for CS 396 at Western Kentucky University.
 
 ## Bugs
 * Target can disappear (I think despawn when going too fast)
-* If last ball is shot do not go to next level till target is missed/hit
-* Game over calculation broken
 * Occasional delay in sound (might be browser's fault)

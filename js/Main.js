@@ -96,9 +96,12 @@ function start() {
     if (!reloading && balls > 0) {
       var ball = new Shape(10, 10, width/2, height-60, "cyan", shotSpeed, rot - pi/2) ;
       game.addShape(ball) ;
+      //update the score when the ball despawns in case the last shot was a miss
+      game.addOnDespawn(function() {updateScore() ;}, ball) ;
       reloading = true ;
       balls-- ;
-      updateScore() ;
+      //update the balls label
+      $("#shot_num").text(balls) ;
       $("#shoot").get(0).play() ;
       setTimeout(function() {reloading = false ;}, reloadSpeed) ;
       //while ball is on screen, add listener
@@ -124,12 +127,11 @@ function updateScore() {
     targetSpeed++ ;
     target.setVector(targetSpeed, targetDir) ;
     //give them extra balls for extra score
-    balls = maxBalls+(score-requiredScore) ;
+    balls += maxBalls+(score-requiredScore) ;
     requiredScore++ ;
     score = 0 ;
   }
-  //TODO also needs to check no balls are on screen
-  else if (balls <= 0) {
+  else if ((balls <= 0) && (game.shapes.length <= 3)) {
     //game over
     window.alert("Game over!") ;
   }

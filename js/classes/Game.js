@@ -30,6 +30,9 @@ class Game {
     //array of misc functions
     this.functions = [] ;
 
+    //array of functions for despawn
+    this.despawn = [] ;
+
     //clear it for new game possibility
     div.empty() ;
 
@@ -39,7 +42,7 @@ class Game {
     div.css("background-color", bgColor) ;
     div.css("position", "relative") ;
 
-    var onUpdate = function(shapes, width, height, collision, functions) {
+    var onUpdate = function(shapes, width, height, collision, functions, despawn) {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
           shapes[i].updateRotation() ;
@@ -48,6 +51,8 @@ class Game {
             shapes[i].deleteShape() ;
             //delete from array
             shapes.splice(i, 1) ;
+            //call despawn function
+            despawn[i]() ;
           }
       }
       for (var i = 0 ; i < collision.length ; i++) {
@@ -59,7 +64,7 @@ class Game {
     }
 
     //loop through and update the positions and collision logic of every shape every tick
-    this.clock = setInterval(onUpdate, this.tickrate, this.shapes, this.width, this.height, this.collision, this.functions) ;
+    this.clock = setInterval(onUpdate, this.tickrate, this.shapes, this.width, this.height, this.collision, this.functions, this.despawn) ;
 
   }
 
@@ -110,6 +115,16 @@ class Game {
   //misc functions for changing things during running
   addFunction(fun) {
     this.functions.push(fun) ;
+  }
+
+  addOnDespawn(fun, shape) {
+    var i = this.shapes.findIndex(function(e) {
+      if (e == shape)
+        return true
+      else
+        return false
+    }) ;
+    this.despawn[i] = fun ;
   }
 
 }
