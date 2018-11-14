@@ -81,7 +81,7 @@ function start() {
   //10 ticks is 100 fps (100 ticks per second close to 100fps)
   game = new Game(gamediv, width, height, "black") ;
 
-  var cannon = new Shape(20, 60, width/2, height-80, "white", 0, 0) ;
+  var cannon = new Shape(20, 60, width/2, height-80, "white", 0, 0, "cannon") ;
   //left and right arrows: 37 and 39 respectively
   game.addKeyListener(function() {
     rot = (rot - rotSpeed) % pi ;

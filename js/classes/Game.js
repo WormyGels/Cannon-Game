@@ -117,6 +117,7 @@ class Game {
     }) ;
 
   }
+  //add a listener for a key press
   addKeyListener(fun, key) {
     //array of keys that are pressed down
     var down = [] ;
@@ -150,7 +151,7 @@ class Game {
   displayMessage(message, time) {
     var htmlString = "<div class='cent-cont'><p class='cent'>"+message+"</p></div>" ;
     //create a shape that covers the screen and has message
-    var msg = new Shape(this.width, this.height, 0, 0, this.bgColor, 0, 0, false, htmlString) ;
+    var msg = new Shape(this.width, this.height, 0, 0, this.bgColor, 0, 0, "", htmlString) ;
     this.addShape(msg) ;
     if (time > 0)
       setTimeout(function(inst, msg) {inst.remShape(msg) ;}, time, this, msg) ;
