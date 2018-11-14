@@ -91,16 +91,16 @@ function start() {
   target = new Shape(100, 10, 100, 60, "red", targetSpeed, 0) ;
   game.addShape(target) ;
   //when target gets to certain point, flip its direction
-  // game.addFunction(function() {
-  //   if (target.posX > width-95 || target.posX <= 5) {
-  //     //change direction of target
-  //     if (targetDir == 0)
-  //       targetDir = pi ;
-  //     else
-  //       targetDir = 0 ;
-  //     target.setVector(targetSpeed, targetDir) ;
-  //   }
-  // }) ;
+  game.addFunction(function() {
+    if (target.posX > width-95 || target.posX <= 5) {
+      //change direction of target
+      if (targetDir == 0)
+        targetDir = pi ;
+      else
+        targetDir = 0 ;
+      target.setVector(targetSpeed, targetDir) ;
+    }
+  }) ;
 
   //when we hit the up arrow
   game.addKeyListener(function() {
