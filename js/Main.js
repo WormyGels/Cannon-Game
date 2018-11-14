@@ -11,6 +11,7 @@ var rotSpeed = pi/16 ;
 var shotSpeed = 5 ;
 var reloadSpeed = 1000 ;
 var reloading = false ;
+var levelChange = false ;
 
 //speed of target
 var targetSpeed = 1 ;
@@ -100,7 +101,8 @@ function start() {
 
   //when we hit the up arrow
   game.addKeyListener(function() {
-    if (!reloading && balls > 0) {
+    //when we arent reloading, we have balls remaining, and we arent changing level
+    if (!reloading && balls > 0 && !levelChange) {
       var ball = new Shape(10, 10, width/2, height-60, "cyan", shotSpeed, rot - pi/2) ;
       game.addShape(ball) ;
       //update the score when the ball despawns in case the last shot was a miss
@@ -137,11 +139,14 @@ function updateScore() {
     balls += maxBalls ;
     requiredScore++ ;
     score = 0 ;
-    game.displayMessage("Level "+level, levelChangeTime) ;
+    game.displayMessage("LEVEL "+level, levelChangeTime) ;
+    levelChange = true ;
+    setTimeout(function() {levelChange = false ;}, levelChangeTime) ;
   }
   else if ((balls <= 0) && (game.shapes.length <= 3)) {
     //game over
-    window.alert("Game over!") ;
+    game.displayMessage("GAME OVER") ;
+    levelChange = true ;
   }
 
   //update the labels

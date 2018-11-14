@@ -149,7 +149,8 @@ class Game {
     //create a shape that covers the screen and has message
     var msg = new Shape(this.width, this.height, 0, 0, this.bgColor, 0, 0, false, htmlString) ;
     this.addShape(msg) ;
-    setTimeout(function(inst, msg) {inst.remShape(msg) ;}, time, this, msg) ;
+    if (time > 0)
+      setTimeout(function(inst, msg) {inst.remShape(msg) ;}, time, this, msg) ;
   }
 
 }

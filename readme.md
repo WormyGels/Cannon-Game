@@ -5,7 +5,6 @@ Created by Jeremy Wells for CS 396 at Western Kentucky University.
 * Menu
 * Back to menu
 * Better HUD
-* Next level notifications
 * Game over screen
 
 ## Bugs
