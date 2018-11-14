@@ -16,12 +16,20 @@ button {
   color: white ;
 }
 #scoreboard {
-  text-align: right ;
+  position: absolute ;
+  bottom: 10px ;
+  right: 10px ;
 }
 .score-label {
   font-size: 32px ;
+}
+.score-num {
+  font-size: 32px ;
+  float: right ;
+}
+.score-group {
   display: block ;
-  padding-right: 100px ;
+  width: 300px ;
 }
 .cent-cont {
   width: 100% ;
@@ -32,5 +40,5 @@ button {
   text-align: center ;
   font-size: 32px ;
   vertical-align: middle ;
-  display: table-cell ; 
+  display: table-cell ;
 }

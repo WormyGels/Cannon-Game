@@ -4,8 +4,7 @@ Created by Jeremy Wells for CS 396 at Western Kentucky University.
 ## TODO
 * Menu
 * Back to menu
-* Better HUD
-* Game over screen
+* Game over back to menu
 
 ## Bugs
 * Target can disappear (I think despawn when going too fast)

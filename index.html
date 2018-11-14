@@ -16,10 +16,18 @@
     <div id="board">
       <div id="gameboard"></div>
       <div id="scoreboard">
-        <span class="score-label">LEVEL <span id="level_num"></span></span>
-        <span class="score-label">SCORE: <span id="score_num"></span></span>
-        <span class="score-label">SHOTS: <span id="shot_num"></span></span>
-        <span class="score-label">NEEDED: <span id="need_num"></span></span>
+        <div class="score-group">
+          <span class="score-label">LEVEL </span><span class="score-num" id="level_num"></span>
+        </div>
+        <div class="score-group">
+          <span class="score-label">SCORE: </span><span class="score-num" id="score_num"></span>
+        </div>
+        <div class="score-group">
+          <span class="score-label">SHOTS: </span><span class="score-num" id="shot_num"></span>
+        </div>
+        <div class="score-group">
+        <span class="score-label">NEEDED: </span><span class="score-num" id="need_num"></span>
+        </div>
       </div>
     </div>
     <audio id="shoot" src="res/shoot.mp3" preload="auto" controls="none" style="display: none;"></audio>

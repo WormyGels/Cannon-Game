@@ -10,8 +10,11 @@ var rotSpeed = pi/16 ;
 //speed of the shot
 var shotSpeed = 5 ;
 var reloadSpeed = 1000 ;
+
+//system statuses
 var reloading = false ;
 var levelChange = false ;
+var gameOver = false ;
 
 //speed of target
 var targetSpeed = 1 ;
@@ -139,7 +142,7 @@ function updateScore() {
     balls += maxBalls ;
     requiredScore++ ;
     score = 0 ;
-    game.displayMessage("LEVEL "+level, levelChangeTime) ;
+    game.displayMessage("LEVEL "+level+"<br>+"+maxBalls+" SHOTS", levelChangeTime) ;
     levelChange = true ;
     setTimeout(function() {levelChange = false ;}, levelChangeTime) ;
   }
@@ -147,6 +150,8 @@ function updateScore() {
     //game over
     game.displayMessage("GAME OVER") ;
     levelChange = true ;
+    gameOver = true ;
+    //display button for going back to menu if its not there already
   }
 
   //update the labels
