@@ -54,8 +54,9 @@ class Game {
             shapes[i].deleteShape() ;
             //delete from array
             shapes.splice(i, 1) ;
-            //call despawn function
-            despawn[i]() ;
+            //call despawn function if it exists
+            if (despawn[i] != null)
+              despawn[i]() ;
           }
       }
       for (var i = 0 ; i < collision.length ; i++) {
