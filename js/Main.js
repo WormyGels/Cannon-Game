@@ -49,26 +49,34 @@ var levelChangeTime = 1000 ;
 $(function() {
 
   start() ;
-  $("#demo").click(function() {
-    game.killClock() ;
-    rot = 0 ;
-    start() ;
-  }) ;
 
 }) ;
 
 //start a new game
 function start() {
 
+  //if its a restart, kill the clock
+  if (game != null)
+    game.clear() ;
+
   //reset level, score
   score = 0 ;
   posScore = 1 ;
+  requiredScore = 1 ;
   level = 1 ;
+  targetSpeed = 1 ;
+  gameOver = false ;
+  levelChange = false ;
   balls = maxBalls ;
   updateScore() ;
 
   //get the game div
   gamediv = $("#gameboard") ;
+
+  //get width and height for different screen sizes
+  width = $("#board").width() ;
+  height = $("#board").height() ;
+
   //declare game object for game engine we built
   //10 ticks is 100 fps (100 ticks per second close to 100fps)
   game = new Game(gamediv, width, height, "black") ;
@@ -109,7 +117,7 @@ function start() {
       var ball = new Shape(10, 10, width/2, height-60, "cyan", shotSpeed, rot - pi/2) ;
       game.addShape(ball) ;
       //update the score when the ball despawns in case the last shot was a miss
-      game.addOnDespawn(function() {console.log("despawn") ; updateScore() ;}, ball) ;
+      game.addOnDespawn(function() {updateScore() ;}, ball) ;
       reloading = true ;
       balls-- ;
       //update the balls label
@@ -128,6 +136,11 @@ function start() {
       }, ball, target) ;
     }
   }, 32) ; //32 is spacebar
+
+  //display level 1 to user
+  game.displayMessage("LEVEL "+level, levelChangeTime) ;
+  levelChange = true ;
+  setTimeout(function() {levelChange = false ;}, levelChangeTime) ;
 
 }
 //go to the next level if we can

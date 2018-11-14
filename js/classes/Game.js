@@ -96,8 +96,10 @@ class Game {
     this.shapes.splice(i, 1) ;
   }
   //free memory function
-  killClock() {
+  clear() {
     clearInterval(this.clock) ;
+    $(document).off() ;
+
   }
 
   //takes two shapes, and when they collide the function executes
