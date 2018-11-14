@@ -121,13 +121,13 @@ function start() {
 //go to the next level if we can
 function updateScore() {
 
-  if ((score >= requiredScore) && (balls <= 0)) {
+  if ((score >= requiredScore)) {
     //go to the next level
     level++ ;
     targetSpeed++ ;
     target.setVector(targetSpeed, targetDir) ;
-    //give them extra balls for extra score
-    balls += maxBalls+(score-requiredScore) ;
+    //give them maxBalls more balls
+    balls += maxBalls ;
     requiredScore++ ;
     score = 0 ;
   }
