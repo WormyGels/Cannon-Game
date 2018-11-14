@@ -49,7 +49,7 @@ class Game {
       for (var i = 0 ; i < shapes.length ; i++) {
           shapes[i].updatePos() ;
           shapes[i].updateRotation() ;
-          if ((shapes[i].posX > width || shapes[i].posY > height) || (shapes[i].posX < 0 || shapes[i].posY < 0)) {
+          if ((shapes[i].posX > width || shapes[i].posY > height) || (shapes[i].posX < -1*shapes[i].width || shapes[i].posY < -1*shapes[i].height)) {
             //delete from dom
             shapes[i].deleteShape() ;
             //delete from array

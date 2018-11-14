@@ -73,7 +73,7 @@ function start() {
   //10 ticks is 100 fps (100 ticks per second close to 100fps)
   game = new Game(gamediv, width, height, "black") ;
 
-  var cannon = new Shape(20, 60, width/2, height-60, "white", 0, 0) ;
+  var cannon = new Shape(20, 60, width/2, height-80, "white", 0, 0) ;
   //left and right arrows: 37 and 39 respectively
   game.addKeyListener(function() {
     rot = (rot - rotSpeed) % pi ;
@@ -109,7 +109,7 @@ function start() {
       var ball = new Shape(10, 10, width/2, height-60, "cyan", shotSpeed, rot - pi/2) ;
       game.addShape(ball) ;
       //update the score when the ball despawns in case the last shot was a miss
-      game.addOnDespawn(function() {updateScore() ;}, ball) ;
+      game.addOnDespawn(function() {console.log("despawn") ; updateScore() ;}, ball) ;
       reloading = true ;
       balls-- ;
       //update the balls label

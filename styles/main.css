@@ -6,6 +6,7 @@
   position: relative ;
 }
 body {
+  user-select: none ;
   background-color: black ;
   color: white ;
   font-family: 'Press Start 2P', cursive;
