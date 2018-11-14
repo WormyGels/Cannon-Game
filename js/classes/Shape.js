@@ -12,7 +12,7 @@ class Shape {
   * Takes:
   * Game engine object, width height, initial position, and boolean if its circle
   */
-  constructor(width, height, initPosX, initPosY, color, momentum, theta, isCircle = false) {
+  constructor(width, height, initPosX, initPosY, color, momentum, theta, isCircle = false, content = "") {
     this.width = width ;
     this.height = height ;
     this.color = color ;
@@ -22,8 +22,7 @@ class Shape {
     this.theta = theta ;
     this.rotation = 0 ;
     this.keyPress = [] ;
-    this.element = $("<div style='position: absolute ; top: "+this.posY+"px ; left: "+this.posY+"px ; width: "+this.width+"px ; height: "+this.height+"px ; background-color: "+this.color+";' class='shape'></div>") ;
-
+    this.element = $("<div style='position: absolute ; top: "+this.posY+"px ; left: "+this.posY+"px ; width: "+this.width+"px ; height: "+this.height+"px ; background-color: "+this.color+";' class='shape'>"+content+"</div>") ;
   }
 
   //update the width and height variables and move them on screen

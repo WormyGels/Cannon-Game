@@ -24,6 +24,9 @@ class Game {
     //the number of miliseconds between updates in game logic (physics and collission)
     this.tickrate = tickrate ;
 
+    //the bg color (used in message method)
+    this.bgColor = bgColor ;
+
     //array of collission listeners
     this.collision = [] ;
 
@@ -77,7 +80,20 @@ class Game {
       this.board.append(shape.element) ;
     }
   }
-
+  //remove a shape from the array
+  remShape(shape) {
+    var i = this.shapes.findIndex(function(e) {
+      if (e == shape)
+        return true
+      else
+        return false
+    }) ;
+    //remove it
+    //dom
+    this.shapes[i].deleteShape() ;
+    //array
+    this.shapes.splice(i, 1) ;
+  }
   //free memory function
   killClock() {
     clearInterval(this.clock) ;
@@ -125,6 +141,15 @@ class Game {
         return false
     }) ;
     this.despawn[i] = fun ;
+  }
+
+  //popup a message for a certain amount of time
+  displayMessage(message, time) {
+    var htmlString = "<div class='cent-cont'><p class='cent'>"+message+"</p></div>" ;
+    //create a shape that covers the screen and has message
+    var msg = new Shape(this.width, this.height, 0, 0, this.bgColor, 0, 0, false, htmlString) ;
+    this.addShape(msg) ;
+    setTimeout(function(inst, msg) {inst.remShape(msg) ;}, time, this, msg) ;
   }
 
 }

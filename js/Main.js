@@ -25,14 +25,21 @@ var height = 600 ;
 var level = 1 ;
 //current score
 var score = 0 ;
+//score rewarded per shot
 var posScore = 1 ;
+//the score required to progress to the next level
 var requiredScore = 1 ;
+//the starting balls (and balls gained per level)
 var maxBalls = 10 ;
+//start off at 10 balls
 var balls = maxBalls ;
 
 //buffer period for collisions
 var bufferPeriod = false ;
 var bufferTime = 1000 ;
+
+//time for level message display
+var levelChangeTime = 1000 ;
 
 //on jquery start
 $(function() {
@@ -130,6 +137,7 @@ function updateScore() {
     balls += maxBalls ;
     requiredScore++ ;
     score = 0 ;
+    game.displayMessage("Level "+level, levelChangeTime) ;
   }
   else if ((balls <= 0) && (game.shapes.length <= 3)) {
     //game over
