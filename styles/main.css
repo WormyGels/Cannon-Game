@@ -3,10 +3,15 @@
 }
 #board {
   border: 1px solid white ;
-  box-sizing: border-box ;
-  position: relative ;
-  width: 100% ;
-  height: 100% ;
+  position: absolute ;
+  top: 0 ;
+  bottom: 0 ;
+  left: 0 ;
+  right: 0 ;
+  margin: auto ;
+  width: 1518px ;
+  height: 723px ;
+  overflow: hidden ;
 }
 html, body {
   user-select: none ;

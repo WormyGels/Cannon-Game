@@ -22,8 +22,8 @@ var targetDir = 0 ;
 var target ;
 
 //width and height of the gameboard
-var width = 1500 ;
-var height = 600 ;
+var width = 1518 ;
+var height = 723 ;
 
 //current level
 var level = 1 ;
