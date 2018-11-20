@@ -103,6 +103,7 @@ function start() {
   requiredScore = 1 ;
   level = 1 ;
   targetSpeed = 1 ;
+  targetDir = 0 ;
   gameOver = false ;
   levelChange = false ;
   balls = maxBalls ;
@@ -139,7 +140,7 @@ function start() {
   game.addShape(target) ;
   //when target gets to certain point, flip its direction
   game.addFunction(function() {
-    if (target.posX > width-95 || target.posX <= 5) {
+    if (target.posX >= width-95 || target.posX <= 5) {
       //change direction of target
       if (targetDir == 0)
         targetDir = pi ;
