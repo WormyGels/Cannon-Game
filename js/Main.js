@@ -50,7 +50,7 @@ $(function() {
   //make nav menu button go back to main menu
   $("#menu-btn").click(function() {
     mainMenu() ;
-    $("#shoot").get(0).play() ;
+    $("#hit").get(0).play() ;
     $("#controls").remove() ;
   }) ;
   mainMenu() ;
@@ -68,18 +68,18 @@ function mainMenu() {
   //when start button is clicked
   $("#start-button").click(function() {
     start() ;
-    $("#shoot").get(0).play() ;
+    $("#hit").get(0).play() ;
     $("#main-menu").remove() ;
   }) ;
   //when controls button is clicked
   $("#controls-button").click(function() {
     var controls = "<div id='controls'><span id='ctrl' class='title'>CONTROLS</span><span class='label'>SHOOT: SPACEBAR</span><span class='label'>AIM: ARROW KEYS</span><span id='back-menu-btn' class='top-pad txt-btn'>BACK</span></div>" ;
     $("#board").append(controls) ;
-    $("#shoot").get(0).play() ;
+    $("#hit").get(0).play() ;
     //when back button (to menu) is clicked
     $("#back-menu-btn").click(function() {
       mainMenu() ;
-      $("#shoot").get(0).play() ;
+      $("#hit").get(0).play() ;
       $("#controls").remove() ;
     }) ;
     $("#main-menu").remove() ;
