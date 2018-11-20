@@ -47,14 +47,52 @@ var levelChangeTime = 1000 ;
 
 //on jquery start
 $(function() {
-
-  start() ;
-
+  //make nav menu button go back to main menu
+  $("#menu-btn").click(function() {
+    mainMenu() ;
+    $("#shoot").get(0).play() ;
+    $("#controls").remove() ;
+  }) ;
+  mainMenu() ;
 }) ;
+
+function mainMenu() {
+  //clear the game object out if it exists
+  if (game != null)
+    game.clear() ;
+  //hide the scoreboard
+  $("#scoreboard").hide() ;
+  $("#nav-menu").hide() ;
+  var menu = "<div id='main-menu'><span class='title'>CANNON GAME</span><span id='subtitle'>BY <span id='colored'>JEREMY WELLS</span></span><span class='txt-btn' id='start-button'>START GAME</span><span class='txt-btn' id='controls-button'>CONTROLS</span></div>" ;
+  $("#board").append(menu) ;
+  //when start button is clicked
+  $("#start-button").click(function() {
+    start() ;
+    $("#shoot").get(0).play() ;
+    $("#main-menu").remove() ;
+  }) ;
+  //when controls button is clicked
+  $("#controls-button").click(function() {
+    var controls = "<div id='controls'><span id='ctrl' class='title'>CONTROLS</span><span class='label'>SHOOT: SPACEBAR</span><span class='label'>AIM: ARROW KEYS</span><span id='back-menu-btn' class='top-pad txt-btn'>BACK</span></div>" ;
+    $("#board").append(controls) ;
+    $("#shoot").get(0).play() ;
+    //when back button (to menu) is clicked
+    $("#back-menu-btn").click(function() {
+      mainMenu() ;
+      $("#shoot").get(0).play() ;
+      $("#controls").remove() ;
+    }) ;
+    $("#main-menu").remove() ;
+  }) ;
+
+
+}
 
 //start a new game
 function start() {
 
+  $("#scoreboard").show() ;
+  $("#nav-menu").show() ;
   //if its a restart, kill the clock
   if (game != null)
     game.clear() ;
@@ -68,6 +106,7 @@ function start() {
   gameOver = false ;
   levelChange = false ;
   balls = maxBalls ;
+  rot = 0 ;
   updateScore() ;
 
   //get the game div

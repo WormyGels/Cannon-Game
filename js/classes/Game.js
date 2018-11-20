@@ -98,6 +98,7 @@ class Game {
   //free memory function
   clear() {
     clearInterval(this.clock) ;
+    this.board.empty() ;
     $(document).off() ;
 
   }

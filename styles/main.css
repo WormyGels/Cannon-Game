@@ -1,6 +1,58 @@
 #gameboard {
   overflow: hidden ;
 }
+.txt-btn {
+  display: block ;
+  padding-bottom: 16px ;
+  font-size: 32px ;
+  cursor: pointer ;
+}
+.txt-btn:hover {
+  color: gray ;
+}
+.label {
+  display: block ;
+  font-size: 32px ;
+}
+.title {
+  font-size: 42px ;
+  display: block ;
+  color: lightgray ;
+}
+.top-pad {
+  padding-top: 24px ;
+}
+#ctrl {
+  padding-bottom: 24px ;
+}
+#subtitle {
+  font-size: 32px ;
+  display: block ;
+  padding-bottom: 24px ;
+  color: lightgray ;
+}
+#main-menu {
+  position: absolute ;
+  text-align: center ;
+  width: 600px ;
+  height: 180px ;
+  top: 0 ;
+  bottom: 0 ;
+  left: 0 ;
+  right: 0 ;
+  margin: auto ;
+}
+#controls {
+  position: absolute ;
+  text-align: center ;
+  width: 600px ;
+  height: 185px ;
+  top: 0 ;
+  bottom: 0 ;
+  left: 0 ;
+  right: 0 ;
+  margin: auto ;
+}
 #board {
   border: 1px solid white ;
   position: absolute ;
@@ -26,10 +78,18 @@ button {
   border: 1px solid white ;
   color: white ;
 }
+#colored {
+  color: white ;
+}
 #scoreboard {
   position: absolute ;
   bottom: 10px ;
   right: 10px ;
+}
+#nav-menu {
+  position: absolute ;
+  bottom: 10px ;
+  left: 10px ;
 }
 .score-label {
   font-size: 32px ;
