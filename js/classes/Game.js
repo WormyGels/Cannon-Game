@@ -109,8 +109,10 @@ class Game {
     this.collision.push(function() {
       //if there is an intersection
       if (
-        (shape1.posX >= shape2.posX) && (shape1.posX <= shape2.posX+shape2.width) &&
-        (shape1.posY >= shape2.posY) && (shape1.posY <= shape2.posY+shape2.height)
+        ((shape1.posX >= shape2.posX) && (shape1.posX <= shape2.posX+shape2.width) &&
+        (shape1.posY >= shape2.posY) && (shape1.posY <= shape2.posY+shape2.height)) ||
+        ((shape1.posX + shape1.width >= shape2.posX) && (shape1.posX + shape1.width <= shape2.posX+shape2.width) &&
+        (shape1.posY + shape1.height >= shape2.posY) && (shape1.posY + shape1.height <= shape2.posY+shape2.height))
       ) {
           fun() ;
       }
